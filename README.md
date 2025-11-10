@@ -233,11 +233,6 @@ npm run build
 
 This project is open source and available under the MIT License.
 
-##  Acknowledgments
-
-- Images from [Unsplash](https://unsplash.com)
-- Icons from [Lucide](https://lucide.dev)
-- UI inspiration from modern e-commerce platforms
 
 
 
