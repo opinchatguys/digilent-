@@ -1,0 +1,250 @@
+================================================================================
+E-COMMERCE WEBSITE PROJECT - PROMPTS DOCUMENTATION
+================================================================================
+Project: Full-Stack E-Commerce Website
+Tech Stack: Next.js, Express.js, MongoDB Atlas, TypeScript, Tailwind CSS
+Generated: November 2025
+================================================================================
+
+PHASE 1: ARCHITECTURE & PLANNING
+================================================================================
+
+Prompt 1.1 - Technical Architecture Document
+--------------------------------------------------------------------------------
+Act as a Senior Full-Stack Architect. Create a comprehensive technical 
+architecture document for an E-Commerce website based on the following 
+requirements:
+
+**Core Functionalities:**
+1. **Product Browsing:** Users can view a list of products.
+2. **Product Details:** Users can click on a product to see its detailed 
+   information.
+3. **Shopping Cart:** Users can add/remove products and adjust quantities in a 
+   cart that persists across page refreshes.
+
+**Tech Stack Mandate:**
+- Frontend: React.js (or Next.js) with React Router.
+- Backend: Node.js with Express.js.
+- Database: MongoDB Atlas.
+
+**Architecture Document Requirements:**
+- **System Overview:** A high-level diagram (describe it in text/mermaid.js 
+  format) showing the interaction between Frontend, Backend, and Database.
+- **Detailed Component Breakdown:**
+    - **Frontend Components:** List the key React components (e.g., 
+      `ProductList`, `ProductDetail`, `ShoppingCart`, `Navbar`) and their 
+      responsibilities.
+    - **Backend API Endpoints:** Define the necessary RESTful API endpoints 
+      (e.g., `GET /api/products`, `GET /api/products/:id`). Specify the HTTP 
+      method, URL, and purpose for each.
+    - **Data Models:** Define the schema for the "Product" and "Cart" (or 
+      "Order") models in a MongoDB-friendly format (using Mongoose schemas).
+- **Project Folder Structure:** Provide a detailed folder structure for a 
+  monorepo containing both `frontend` and `backend` directories.
+- **State Management Strategy:** Explain how the shopping cart state will be 
+  managed in the React frontend (e.g., using React Context API or a lightweight 
+  state library).
+
+
+================================================================================
+PHASE 2: BACKEND DEVELOPMENT
+================================================================================
+
+Prompt 2.1 - Backend Scaffolding
+--------------------------------------------------------------------------------
+Act as a Senior Backend Developer. Using the architecture document as a guide, 
+write the initial code for the Node.js/Express backend.
+
+**Specific Tasks:**
+1. Create the main server file (e.g., `server.js` or `index.js`).
+2. Set up essential middleware (Express.json(), CORS).
+3. Include code to connect to a MongoDB Atlas database using Mongoose. Use a 
+   configuration file for the connection string.
+4. Define the Mongoose schemas and models for "Product" and "Cart". The Cart 
+   should be able to hold an array of items, where each item references a 
+   Product and has a quantity.
+5. Create a placeholder route handler for `GET /api/products` that returns a 
+   simple JSON message for now.
+
+Please provide the complete code for all the necessary files as per the folder 
+structure defined in the architecture.
+
+
+Prompt 2.2 - REST API Implementation
+--------------------------------------------------------------------------------
+Act as a Senior Backend Developer. Now, implement the complete REST API 
+endpoints for the E-Commerce backend as defined in the architecture.
+
+**Endpoints to Implement:**
+- `GET /api/products`: Fetches and returns an array of all products from the 
+  database.
+- `GET /api/products/:id`: Fetches and returns the details of a single product 
+  by its ID.
+- `GET /api/cart`: Fetches the current shopping cart. (For now, we can work 
+  with a single, session-less cart. In a real app, this would be tied to a 
+  user session).
+- `POST /api/cart`: Adds an item to the cart. The request body should contain 
+  `productId` and `quantity`. If the item exists, update the quantity.
+- `PUT /api/cart/:productId`: Updates the quantity of a specific item in the 
+  cart.
+- `DELETE /api/cart/:productId`: Removes an item from the cart.
+
+**Instructions:**
+- Use the Product and Cart models you defined earlier.
+- For the cart, since we don't have user authentication, you can simulate a 
+  cart by using a single cart document with a fixed ID (e.g., "defaultCart"). 
+  In a future step, we can move this to the browser's local storage or 
+  implement proper sessions.
+- Include proper error handling (e.g., 404 if product not found, 400 for bad 
+  requests).
+- Write clean, commented code.
+
+
+================================================================================
+PHASE 3: FRONTEND DEVELOPMENT
+================================================================================
+
+Prompt 3.1 - Frontend Scaffolding
+--------------------------------------------------------------------------------
+Act as a Senior Frontend Developer. Using the architecture document as a guide, 
+scaffold the React.js frontend application.
+
+**Specific Tasks:**
+1. Create the main `App.js` file that sets up React Router with the following 
+   routes:
+    - `/` -> HomePage/ProductList page
+    - `/product/:id` -> ProductDetail page
+    - `/cart` -> ShoppingCart page
+2. Create the basic shell (functional component with placeholder JSX) for each 
+   of the following components: `ProductList`, `ProductDetail`, `ShoppingCart`, 
+   and `Navbar`. The Navbar should include a link to the Home page and the Cart 
+   page, as well as display the current number of items in the cart.
+3. Set up the Context API for global state management of the shopping cart. 
+   Create a `CartContext.js` file. The context should provide:
+    - `cartItems` (state)
+    - Functions: `addToCart`, `removeFromCart`, `updateQuantity`, `getCartTotal` 
+      (a function to calculate the total number of items for the Navbar).
+4. Wrap the `App` component with the `CartProvider`.
+
+Please provide the complete code for all the necessary files.
+
+
+Prompt 3.2 - Core UI Implementation & API Integration
+--------------------------------------------------------------------------------
+Act as a Senior Frontend Developer. Now, implement the core UI components to 
+fetch and display data from the backend API.
+
+**Tasks for `ProductList` Component:**
+- Use the `fetch` API or `axios` to call `GET /api/products` from your backend 
+  when the component mounts.
+- Display the list of products in a grid. Each product card should show at 
+  least the name, image, price, and a "Add to Cart" button.
+- Clicking on a product card should navigate the user to the `/product/:id` 
+  route.
+
+**Tasks for `ProductDetail` Component:**
+- Use the `productId` from the URL parameter (use `useParams` from React 
+  Router).
+- Fetch the product details by calling `GET /api/products/:id`.
+- Display all product information (name, image, price, description, etc.).
+- Include an "Add to Cart" button that uses the `addToCart` function from the 
+  `CartContext`.
+
+Ensure all components handle loading and error states gracefully.
+
+
+Prompt 3.3 - Shopping Cart Finalization
+--------------------------------------------------------------------------------
+Act as a Senior Frontend Developer. Finalize the shopping cart functionality.
+
+**Tasks for `ShoppingCart` Component:**
+- Use the `cartItems` from the `CartContext`.
+- Display each item in the cart with its image, name, price, and a quantity 
+  selector.
+- The quantity selector should allow the user to increase/decrease the quantity 
+  (calling `updateQuantity` from context) or remove the item entirely (calling 
+  `removeFromCart`).
+- Display the subtotal for each item and the grand total for the entire cart.
+- Include a "Proceed to Checkout" button (it can be a placeholder for now).
+
+**Enhance State Persistence:**
+- Modify the `CartContext` to initialize its state from the browser's 
+  `localStorage` on load.
+- Update `localStorage` whenever the `cartItems` state changes. This will make 
+  the cart persist across page refreshes.
+
+Please provide the updated code for the `CartContext.js` and the new 
+`ShoppingCart.js` component.
+
+
+================================================================================
+PHASE 4: STYLING & UI/UX
+================================================================================
+
+Prompt 4.1 - Modern Responsive Styling
+--------------------------------------------------------------------------------
+Act as a Senior UI/UX Developer. Apply modern, responsive CSS styling to the 
+entire E-Commerce website. The goal is a clean and professional look.
+
+**Requirements:**
+- Use a mobile-first approach with CSS Flexbox/Grid.
+- Ensure the product grid and navigation bar are fully responsive.
+- Style the product cards, buttons, and cart items to be visually appealing.
+- Use a consistent color scheme and typography.
+- You can use a lightweight CSS framework like Tailwind CSS OR write custom 
+  CSS. Please specify which you are using.
+
+Apply the styles directly to the components or provide a separate CSS file, 
+ensuring all elements are styled.
+
+
+================================================================================
+PHASE 5: DOCUMENTATION
+================================================================================
+
+Prompt 5.1 - Prompts Compilation
+--------------------------------------------------------------------------------
+Compile all the prompts I have used to generate this E-Commerce website project 
+into a single, well-formatted text document. This document will be delivered as 
+the "Prompts used for generating tech documentation and code base" artifact.
+
+List them in the chronological order they were used, from Phase 1 to Phase 5.
+
+
+================================================================================
+PROJECT SUMMARY
+================================================================================
+
+Total Phases: 5
+Total Prompts: 8 main prompts (1.1, 2.1, 2.2, 3.1, 3.2, 3.3, 4.1, 5.1)
+
+Development Flow:
+1. Architecture & Planning → Technical design document
+2. Backend Development → Server setup, API endpoints, database models
+3. Frontend Development → React components, routing, state management
+4. Styling & UI/UX → Responsive design with Tailwind CSS
+5. Documentation → This prompts compilation document
+
+Key Features Implemented:
+- Product browsing with responsive grid
+- Product detail pages with quantity selection
+- Shopping cart with localStorage persistence
+- RESTful API with Express.js
+- MongoDB integration with Mongoose
+- React Context API for state management
+- Next.js App Router for routing
+- Tailwind CSS for modern styling
+- Mobile-first responsive design
+- Full TypeScript implementation
+
+Technology Stack:
+- Frontend: Next.js 16, React 19, TypeScript, Tailwind CSS 4
+- Backend: Node.js, Express.js, TypeScript
+- Database: MongoDB Atlas with Mongoose ODM
+- State Management: React Context API
+- Icons: Lucide React
+- API: RESTful architecture
+
+================================================================================
+END OF DOCUMENT
+================================================================================
