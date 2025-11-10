@@ -1,15 +1,15 @@
-## ✨ Features
+##  Features
 
-- 🎨 **Modern Glassmorphism UI** - Stunning gradient backgrounds with frosted glass effects
-- 🛍️ **Product Catalog** - Browse products with beautiful cards and smooth animations
-- 🛒 **Shopping Cart** - Add, remove, and manage cart items with localStorage persistence
-- 📱 **Responsive Design** - Mobile-first design that works on all devices
-- ⚡ **Fast Performance** - Built with Next.js 16 and Turbopack for blazing fast development
-- 🎯 **TypeScript** - Full type safety across frontend and backend
-- 🔄 **Mock Data Fallback** - Works without backend for immediate testing
-- 💾 **Cart Persistence** - Cart data saved to localStorage, survives page refreshes
+-  **Modern Glassmorphism UI** - Stunning gradient backgrounds with frosted glass effects
+-  **Product Catalog** - Browse products with beautiful cards and smooth animations
+-  **Shopping Cart** - Add, remove, and manage cart items with localStorage persistence
+-  **Responsive Design** - Mobile-first design that works on all devices
+-  **Fast Performance** - Built with Next.js 16 and Turbopack for blazing fast development
+-  **TypeScript** - Full type safety across frontend and backend
+-  **Mock Data Fallback** - Works without backend for immediate testing
+-  **Cart Persistence** - Cart data saved to localStorage, survives page refreshes
 
-## 🚀 Tech Stack
+## Tech Stack
 
 ### Frontend
 - **Next.js 16.0.1** - React framework with App Router
@@ -26,7 +26,7 @@
 - **MongoDB Atlas** - Cloud database
 - **Mongoose** - MongoDB ODM
 
-## 📦 Installation
+##  Installation
 
 ### Prerequisites
 - Node.js 18+ installed
@@ -86,7 +86,7 @@ npm run dev
 npm run seed
 ```
 
-## 🎯 Usage
+##  Usage
 
 ### Running the Full Application
 
@@ -108,7 +108,7 @@ The application works perfectly without the backend using mock data:
 - Full shopping cart functionality
 - All UI features operational
 
-## 🏗️ Project Structure
+##  Project Structure
 
 ```
 ecommerce-website/
@@ -139,7 +139,7 @@ ecommerce-website/
     └── package.json
 ```
 
-## 🎨 UI Features
+## UI Features
 
 ### Glassmorphism Design
 - Semi-transparent cards with backdrop blur
@@ -171,14 +171,14 @@ ecommerce-website/
 - `npm run build` - Compile TypeScript
 - `npm run seed` - Seed database with sample products
 
-## 📱 Pages
+## Pages
 
 - **Home (/)** - Product catalog with grid layout
 - **/products** - Full product listing
 - **/products/[id]** - Individual product details
 - **/cart** - Shopping cart and checkout
 
-## 🌐 API Endpoints
+##  API Endpoints
 
 ### Products
 - `GET /api/products` - Get all products
@@ -194,7 +194,7 @@ ecommerce-website/
 - `DELETE /api/cart/remove/:productId` - Remove item
 - `DELETE /api/cart/clear` - Clear entire cart
 
-## 🎯 Key Features Explained
+## Key Features Explained
 
 ### Mock Data Fallback
 The application automatically uses mock data if the backend is unavailable:
@@ -214,7 +214,7 @@ Full TypeScript implementation:
 - Validated data structures
 - IDE autocomplete support
 
-## 🚀 Deployment
+## Deployment
 
 ### Frontend (Vercel)
 ```bash
@@ -229,24 +229,16 @@ npm run build
 # Deploy to your preferred platform
 ```
 
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
+## License
 
 This project is open source and available under the MIT License.
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - Images from [Unsplash](https://unsplash.com)
 - Icons from [Lucide](https://lucide.dev)
 - UI inspiration from modern e-commerce platforms
 
-## 📞 Support
 
-For issues or questions, please open an issue in the repository.
-
----
 
 **Made with ❤️ using Next.js and TypeScript**
